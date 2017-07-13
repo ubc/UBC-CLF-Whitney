@@ -5,7 +5,7 @@
  * @wordpress-plugin
  * Plugin Name:       UBC CLF Whitney webfont
  * Plugin URI:        http://clf.ubc.ca
- * Description:       Add CLF Whitney webfont CSS request. <strong>Note: Required registeration</strong>. Please sign up on <a href="http://brand.ubc.ca/font-request-form/" target="_blank">UBC Brand</a> website.
+ * Description:       Add CLF Whitney webfont CSS request. <strong>Note: Required registration</strong>. Please sign up on <a href="http://brand.ubc.ca/font-request-form/" target="_blank">UBC Brand</a> website.
  * Version:           1.0
  * Author:            Michael Kam
  * Author URI:        
