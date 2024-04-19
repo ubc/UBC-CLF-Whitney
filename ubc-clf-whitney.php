@@ -6,8 +6,8 @@
  * Plugin Name:       UBC CLF Whitney webfont
  * Plugin URI:        http://clf.ubc.ca
  * Description:       Add CLF Whitney webfont CSS request. <strong>Note: Required registration</strong>. Please sign up on <a href="http://brand.ubc.ca/font-request-form/" target="_blank">UBC Brand</a> website.
- * Version:           1.0
- * Author:            Michael Kam
+ * Version:           1.1
+ * Author:            Michael Kam & Flynn O'Connor
  * Author URI:        
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -49,6 +49,9 @@ class UBC_CLF_Whitney {
 		// Add custom UBC CLF Whitney
 		add_action( 'init', array( $this, 'init__add_clf_whitney' ) );
 
+		// Add new settings panels
+		add_action('admin_init', array($this, 'register_settings'));
+
 	}/* add_actions() */
 
 
@@ -64,13 +67,55 @@ class UBC_CLF_Whitney {
 
 	public function init__add_clf_whitney() {
 
-        // Add UBC CLF Whitney subscription CSS request
-		wp_register_style( 'ubc-clf-whitney', '//cloud.typography.com/6804272/781004/css/fonts.css' );
-        wp_enqueue_style( 'ubc-clf-whitney' );
+		$font_source = get_option('ubc_font_source', 'production'); // Default to 'production' if not set
+
+        if ($font_source === 'development') {
+			wp_enqueue_style( 'ubc-clf-whitney', 'https://cloud.typography.com/6804272/697806/css/fonts.css' );
+        } else {
+			wp_enqueue_style( 'ubc-clf-whitney', 'https://cloud.typography.com/6804272/781004/css/fonts.css' );
+        }
 
 	}/* init__add_clf_whitney() */
 
+	/**
+	 * Method for registering new settings panel;
+	 *
+	 * @since 1.0.1
+	 * 
+	 * @return void
+	 */
+    public function register_settings() {
+        register_setting('reading', 'ubc_font_source');
 
+        add_settings_section(
+            'ubf_settings_section',
+            'Font Source Environment',
+            array($this, 'settings_section_callback'),
+            'reading'
+        );
+
+        add_settings_field(
+            'ubf_font_source_field',
+            'Select Environment',
+            array($this, 'font_source_field_callback'),
+            'reading',
+            'ubf_settings_section'
+        );
+    }
+
+	public function settings_section_callback() {
+        echo '<p>Select whether the website is for development/testing or production purposes.</p>';
+    }
+
+    public function font_source_field_callback() {
+        $font_source = get_option('ubc_font_source');
+        ?>
+        <input type="radio" id="production" name="ubc_font_source" value="production" <?php checked($font_source, 'production'); ?>>
+        <label for="production">Production</label><br>
+        <input type="radio" id="development" name="ubc_font_source" value="development" <?php checked($font_source, 'development'); ?>>
+        <label for="development">Development</label>
+        <?php
+    }
 
 }/* class UBC_CLF_Whitney */
 
