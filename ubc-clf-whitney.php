@@ -124,7 +124,7 @@ class UBC_CLF_Whitney {
 	 * @return null
 	 */
 	public function font_source_field_callback() {
-		$font_source = get_option( 'ubc_font_source' );
+		$font_source = get_option( 'ubc_font_source', 'production' ); // Default to 'production' if not set
 		?>
 		<input type="radio" id="production" name="ubc_font_source" value="production" <?php checked( $font_source, 'production' ); ?>>
 		<label for="production">Production</label><br>
