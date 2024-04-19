@@ -85,7 +85,7 @@ class UBC_CLF_Whitney {
 	 *
 	 * @since 1.0.1
 	 *
-	 * @return void
+	 * @return null
 	 */
 	public function register_settings() {
 		register_setting( 'reading', 'ubc_font_source' );
@@ -106,10 +106,23 @@ class UBC_CLF_Whitney {
 		);
 	}
 
+	/**
+	 * Establishes intro section for our font source panel
+	 * 
+	 * @since 1.0.1
+	 *
+	 * @return null
+	 */
 	public function settings_section_callback() {
 		echo '<p>Select whether the website is for development/testing or production purposes.</p>';
 	}
-
+	/**
+	 * Create radio buttons in settings for reading.
+	 *
+	 * @since 1.0.1
+	 * 
+	 * @return null
+	 */
 	public function font_source_field_callback() {
 		$font_source = get_option( 'ubc_font_source' );
 		?>
