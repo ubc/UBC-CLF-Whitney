@@ -92,7 +92,7 @@ class UBC_CLF_Whitney {
 
 		add_settings_section(
 			'ubf_settings_section',
-			'Font Source Environment',
+			'UBC Brand Font Source',
 			array( $this, 'settings_section_callback' ),
 			'reading'
 		);
