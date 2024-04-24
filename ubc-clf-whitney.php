@@ -114,7 +114,7 @@ class UBC_CLF_Whitney {
 	 * @return null
 	 */
 	public function settings_section_callback() {
-		echo '<p>Select whether the website is for development/testing or production purposes.</p>';
+		echo '<p>Select whether the website is for development/testing or production purposes. The Whitney web fonts are only available to UBC Departments for websites that use the UBC CLF (Common Look and Feel) templates, and a .ubc.ca subdomain. The development version is used for any sites using *.sites.olt.ubc.ca.</p>';
 	}
 	/**
 	 * Create radio buttons in settings for reading.
